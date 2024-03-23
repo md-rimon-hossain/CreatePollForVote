@@ -72,10 +72,6 @@ const createOpinionViewPoll = async (req, res) => {
     options[index].vote = options[index].vote + 1;
     const totalVote = poll.totalVote + 1;
 
-    console.log(options);
-    console.log(totalVote);
-    console.log("riomfndsfdsffdsfsd");
-
     await Poll.findByIdAndUpdate(
       { _id: poll._id },
       { $set: { options, totalVote } }
@@ -93,3 +89,7 @@ module.exports = {
   getViewPoll,
   createOpinionViewPoll,
 };
+
+
+
+
