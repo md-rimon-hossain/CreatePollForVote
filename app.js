@@ -7,6 +7,7 @@ require("dotenv").config()
 
 const app = express()
 const databaseUrl = process.env.MONGODB_URL;
+const port = process.env.PORT
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -37,7 +38,9 @@ const DBconnect = async () => {
    }
 }
 
-app.listen(4000, () => {
- console.log(`Sever is running at http://localhost:4000`)
- DBconnect()
-})
+app.listen(port, () => {
+  console.log(
+    `Sever is running at http://localhost:${port}`
+  );
+  DBconnect();
+});
