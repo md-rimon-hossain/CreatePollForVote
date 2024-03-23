@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Create new poll</title>
+    <style>
+      body {
+        background: rgb(0, 4, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 4, 36, 1) 48%,
+          rgba(67, 8, 86, 1) 100%
+        );
+      }
+      label {
+        color: #fff !important;
+      }
+      input,
+      textarea {
+        color: #fff !important;
+        letter-spacing: 1px;
+      }
+      textarea {
+        min-height: 100px;
+      }
+      input[type="submit"], input[type="button"]{
+        outline: 1px dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        padding: 4px 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="grid grid-cols-1">
+        <div
+          class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24"
+        >
+          <div class="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
+            <h2
+              class="text-3xl text-white font-bold leading-tight text-black sm:text-4xl"
+            >
+              Create new poll
+            </h2>
+            <form action="/create" method="POST" class="mt-8">
+              <div class="space-y-5">
+                <div>
+                  <label for="" class="text-base font-medium text-gray-900">
+                    Enter title
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      name="title"
+                      required
+                      class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                      type="text"
+                      placeholder="Enter title"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div class="flex items-center justify-between">
+                    <label for="" class="text-base font-medium text-gray-900">
+                      Description
+                    </label>
+                  </div>
+                  <div class="mt-2">
+                    <textarea
+                      name="description"
+                      required
+                      class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                      type=""
+                      placeholder="Write a description"
+                    ></textarea>
+                  </div>
+                </div>
+                <div id="options">
+                  <label for="" class="text-base font-medium text-gray-900">
+                    Options
+                  </label>
+                  <div class="mt-2">
+                    <input
+                      name="options"
+                      required
+                      class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                      type="text"
+                      placeholder="Option 1"
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <input
+                      name="options"
+                      required
+                      class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                      type="text"
+                      placeholder="Option 2"
+                    />
+                  </div>
+                </div>
+                <button
+                  id="addOption"
+                  type="button"
+                  class="rounded-full bg-black mt-4 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                >
+                  Add more options
+                </button>
+                <div>
+                  <input
+                    type="submit"
+                    value="Create Poll"
+                    class="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  />
+                </div>
+                <div>
+                  <a href="/polls">
+                    <input
+                    type="button"
+                    value="See All Created polls"
+                    class="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  />
+                  </a>
+          </div>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let options = document.getElementById("options");
+
+      let addOption = document.getElementById("addOption");
+
+      let currentOptionNumber = 3;
+
+      const createNewOption = () => {
+        // Create a div element
+        let divElement = document.createElement("div");
+
+        // Add classes to the div element
+        divElement.classList.add("mt-2");
+
+        // Create an input element
+        let inputElement = document.createElement("input");
+
+        // Add classes and attributes to the input element
+        inputElement.classList.add(
+          "flex",
+          "h-10",
+          "w-full",
+          "rounded-md",
+          "border",
+          "border-gray-300",
+          "bg-transparent",
+          "px-3",
+          "py-2",
+          "text-sm",
+          "placeholder:text-gray-400",
+          "focus:outline-none",
+          "focus:ring-1",
+          "focus:ring-gray-400",
+          "focus:ring-offset-1",
+          "disabled:cursor-not-allowed",
+          "disabled:opacity-50"
+        );
+        inputElement.type = "text";
+        inputElement.name = "options";
+        inputElement.required = true
+        inputElement.placeholder = "Option " + currentOptionNumber++;
+
+        // Append the input element to the div element
+        divElement.appendChild(inputElement);
+        return divElement;
+      };
+
+      addOption.addEventListener("click", (e) => {
+        let option = createNewOption();
+        options.appendChild(option);
+      });
+    </script>
+  </body>
+</html>

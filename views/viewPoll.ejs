@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: rgb(0, 4, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 4, 36, 1) 48%,
+          rgba(67, 8, 86, 1) 100%
+        );
+        font-family: sans-serif;
+      }
+
+      label {
+        letter-spacing: 0.5px;
+      }
+      input {
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      .title {
+        font-size: 19px;
+      }
+
+      button {
+        outline: 1px dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <section>
+      <div class="grid grid-cols-1">
+        <div
+          class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24"
+        >
+          <div
+            class="xl:mx-auto w-full sm:w-full md:max-w-sm xl:max-w-sm xl:max-w-sm 2xl:max-w-md"
+          >
+            <h2
+              class="title text-white leading-tight text-black mt-4 mb-[2px] sm:text-[18px]"
+            >
+              Title:
+            </h2>
+            <p
+              class="text-white ml-2 text-gray-400 leading-tight text-black sm:text-sm"
+            >
+              <%= poll.title%>
+            </p>
+            <h2
+              class="title text-white leading-tight text-black mt-4 mb-[2px] sm:text-[18px]"
+            >
+              Description
+            </h2>
+            <p
+              class="text-white ml-2 text-gray-400 leading-tight text-black sm:text-sm"
+            >
+              <%= poll.description%>
+            </p>
+            <h2
+              class="text-[16px] text-white leading-tight text-black mt-4 mb-2 sm:text-[18px]"
+            >
+              Result
+            </h2>
+            <div class="mt-1 mb-6">
+              <div class="space-y-5">
+                <ol type="1">
+                  <% for (let result of results) { %>
+                  <li
+                    class="flex mt-2 justify-between w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <span> <%= result.name %> </span>
+                    <span> <%= result.vote %> </span>
+                    <span> <%= result.percentage %>%</span>
+                  </li>
+                  <% } %>
+                </ol>
+              </div>
+            </div>
+
+            <h2
+              class="text-[16px] text-white leading-tight text-black sm:text-[18px]"
+            >
+              What is Your opinion?
+            </h2>
+
+            <form action="/polls/<%= poll._id %>" method="POST" class="mt-1">
+              <div class="space-y-5">
+                <% for (let option of poll.options) {%>
+
+                <div
+                  class="mt-2 flex w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <input
+                    required
+                    name="option"
+                    id="<%= option._id %>"
+                    class="w-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    type="radio"
+                    value="<%= option._id %>"
+                  />
+                  <label
+                    for="<%= option._id %>"
+                    class="text-base ml-2 w-full font-medium text-gray-400"
+                    style="font-size: 0.8rem"
+                  >
+                    <%= option.name %>
+                  </label>
+                </div>
+                <% }%>
+                <div class="w-full flex justify-between">
+                  <div class="w-[50%]">
+                    <input
+                      type="submit"
+                      value="Submit Your Opinion"
+                      class="flex h-10 w-[50%] text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                  </div>
+                  <div class="w-[50%]">
+                    <a href="/create">
+                      <input
+                      type="button"
+
+                      value="create poll"
+                      class="flex h-10 w-[50%] text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    />
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <a href="/polls">
+                    <button
+                    type="button"
+                      class="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    >
+                      See All Polls
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

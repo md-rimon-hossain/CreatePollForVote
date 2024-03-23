@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: rgb(0, 4, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 4, 36, 1) 48%,
+          rgba(67, 8, 86, 1) 100%
+        );
+      }
+
+      li {
+        color: #fff !important;
+        letter-spacing: 1px;
+        font-size: 20px !important;
+      }
+
+      button {
+        outline: 1px dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+      }
+    </style>
+
+    <title>Polls</title>
+  </head>
+  <body>
+    <section>
+      <div class="grid grid-cols-1">
+        <div
+          class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24"
+        >
+          <div class="xl:mx-auto w-full sm:w-full md:max-w-sm xl:max-w-sm xl:max-w-sm 2xl:max-w-md">
+            <h2
+              class="text-3xl text-white font-bold leading-tight text-black sm:text-4xl"
+            >
+              All Polls
+            </h2>
+            <div class="mt-8">
+              <div class="space-y-5">
+               <% for (let p of polls) { %>
+                <div class="mt-2">
+                  <li
+                    class="flex w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <a class="w-full" href="/polls/<%=p._id%>">
+                     <%= p.title %>
+                    </a>
+                  </li>
+                </div>
+
+               <% } %>
+
+               <div>
+                  <a href="/create">
+                    <button
+                    class="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                  >
+                  Create Another Poll
+                  </button>
+                  </a>
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Home page</title>
+    <style>
+      body {
+        background: rgb(0, 4, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 4, 36, 1) 48%,
+          rgba(67, 8, 86, 1) 100%
+        );
+      }
+
+      input {
+        outline: 1px dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="grid grid-cols-1">
+        <div
+          class="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24"
+        >
+          <div>
+            <a href="/create">
+              <input
+                type="button"
+                value="Create Polls"
+                class="inline-flex w-full text-4xl p-24 items-center justify-center rounded-full bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
